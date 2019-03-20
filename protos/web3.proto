@@ -13,6 +13,8 @@ service EthWeb3 {
     }
     rpc RecoverPersonalSigned (RecoverMsg) returns (RecoverAddress) {
     }
+    rpc ApostleArenaSettlement (ApostleArenaSettlementChain) returns (ApostleArenaSettlementResult) {
+    }
 }
 
 message TypeMsg {
@@ -46,7 +48,15 @@ message EthVerfiyResult {
     bool message = 1;
 }
 
-message EthDerivedAddress{
+message ApostleArenaSettlementChain {
+    string message = 1;
+}
+
+message ApostleArenaSettlementResult {
+    string message = 1;
+}
+
+message EthDerivedAddress {
     string extendedPublicKey = 1;
     string path = 2;
     string address = 3;
