@@ -7,11 +7,9 @@ let arena = require(__dirname + '/lib/arenaSettlement');
 const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 const readlineSync = require('readline-sync');
-// let web3_proto = grpc.load(PROTO_PATH).web3;
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, false);
-const web3_proto = grpc.loadPackageDefinition(packageDefinition);
-
-let GameSettlePrivateKey = "";
+const web3_proto = grpc.loadPackageDefinition(packageDefinition).web3;
+let GameSettlePrivateKey = "2948cdb483f925b8ac4516820277a142b3e75d5966fbae2c653b3afb84945fbe";
 
 function SignedTypeMsg(call, callback) {
     callback(null, {message: eth_sign.ethSignTypedData(call.request.msg, call.request.private_key)});
@@ -39,7 +37,7 @@ function DecodeTokenId(call, callback) {
 
 function ApostleArenaSettlement(call, callback) {
     let chain = call.request.message;
-    callback(null, {message: arena.settleGame(chain)});
+    callback(null, {message: arena.settleGame(chain, GameSettlePrivateKey)});
 }
 
 const getGameSettlePrivateKey = async () => {
@@ -49,7 +47,9 @@ const getGameSettlePrivateKey = async () => {
 };
 
 async function main() {
-    await getGameSettlePrivateKey();
+    if (process.env.GRPC_ENV === "production") {
+        await getGameSettlePrivateKey();
+    }
     let server = new grpc.Server();
     server.addService(web3_proto.EthWeb3.service, {
         SignedTypeMsg: SignedTypeMsg,
@@ -61,6 +61,7 @@ async function main() {
     });
     server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
     server.start();
+    console.log("server start")
 }
 
 main();

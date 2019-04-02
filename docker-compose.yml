@@ -5,12 +5,12 @@ services:
     container_name: 'grpc-node'
     build: .
     environment:
-      GRPC_ENV: 'production'
+      GRPC_ENV: 'dev'
     ports:
       - '50051:50051'
     networks:
       - app_net
-
+    command: ["node","server.js"]
 networks:
   app_net:
     external: true
