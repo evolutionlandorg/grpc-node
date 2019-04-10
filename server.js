@@ -35,9 +35,12 @@ function DecodeTokenId(call, callback) {
     })
 }
 
-function ApostleArenaSettlement(call, callback) {
+async function ApostleArenaSettlement(call, callback) {
     let chain = call.request.message;
-    callback(null, {message: arena.settleGame(chain, GameSettlePrivateKey)});
+    await arena.settleGame(chain, GameSettlePrivateKey).then(function (data) {
+        console.log("settleGame", data);
+        callback(null, {message: data});
+    });
 }
 
 const getGameSettlePrivateKey = async () => {
