@@ -6,6 +6,7 @@ services:
     build: .
     environment:
       GRPC_ENV: 'dev'
+      GRPC_VERBOSITY: 'DEBUG'
     ports:
       - '50051:50051'
     networks:
