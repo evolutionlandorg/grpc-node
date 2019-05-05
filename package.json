@@ -16,8 +16,8 @@
     "google-protobuf": "^3.0.0",
     "grpc": "^1.0.0",
     "hdkey": "^1.1.0",
-    "lodash": "^4.6.1",
+    "lodash": ">=4.17.11",
     "minimist": "^1.2.0",
-    "web3": "^1.0.0-beta.34"
+    "web3": "^1.0.0-beta.54"
   }
 }
