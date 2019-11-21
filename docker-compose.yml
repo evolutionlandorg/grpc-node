@@ -7,6 +7,7 @@ services:
     environment:
       GRPC_ENV: 'dev'
       GRPC_VERBOSITY: 'DEBUG'
+      CHAIN_WS_ENDPOINT: 'wss://crayfish.darwinia.network/'
     ports:
       - '50051:50051'
     networks:
