@@ -4,6 +4,7 @@ let eth_sign = require(__dirname + '/lib/eth_sign');
 let addressVerify = require(__dirname + '/lib/ethDerivedAddressVerify');
 let land = require(__dirname + '/lib/land');
 let arena = require(__dirname + '/lib/arenaSettlement');
+const tx = require(__dirname + "/lib/sendAndSign");
 const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 const readlineSync = require('readline-sync');
@@ -25,6 +26,12 @@ function EthDerivedAddressVerify(call, callback) {
 
 function RecoverPersonalSigned(call, callback) {
     callback(null, {message: eth_sign.ethRecoverPersonalSign(call.request.msg, call.request.signed)});
+}
+
+async function SignAndSendTransaction(call, callback) {
+    await tx.SignAndSign(call.request.fn, call.request.param).then(function (hash) {
+        callback(null, {message: hash});
+    });
 }
 
 function DecodeTokenId(call, callback) {
@@ -61,10 +68,11 @@ async function main() {
         EthDerivedAddressVerify: EthDerivedAddressVerify,
         RecoverPersonalSigned: RecoverPersonalSigned,
         ApostleArenaSettlement: ApostleArenaSettlement,
+        SignAndSendTransaction: SignAndSendTransaction,
     });
     server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
     server.start();
-    console.log("server start")
+    console.log("Server Start with port :50051")
 }
 
 main();
