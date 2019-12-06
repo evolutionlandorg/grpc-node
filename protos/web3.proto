@@ -65,8 +65,7 @@ message EthDerivedAddress {
 }
 
 message SignRequest {
-    repeated string fn = 1;
-    repeated string param = 2;
+    string param = 1;
 }
 
 message SignReply {
