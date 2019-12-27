@@ -66,6 +66,7 @@ message EthDerivedAddress {
 
 message SignRequest {
     string param = 1;
+    string method = 2;
 }
 
 message SignReply {
