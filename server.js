@@ -29,7 +29,7 @@ function RecoverPersonalSigned(call, callback) {
 }
 
 async function SignAndSendTransaction(call, callback) {
-    await tx.checkReceipt(call.request.param,call.request.method).then(function (hash) {
+    await tx.checkReceipt(call.request.param, call.request.module, call.request.method).then(function (hash) {
         callback(null, {message: hash});
     });
 }
