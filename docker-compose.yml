@@ -7,7 +7,7 @@ services:
     environment:
       GRPC_ENV: 'dev'
       GRPC_VERBOSITY: 'DEBUG'
-      CHAIN_WS_ENDPOINT: 'ws://35.234.35.49:9944/'
+      CHAIN_WS_ENDPOINT: 'wss://icefrog.darwinia.network/'
     ports:
       - '50051:50051'
     networks:
