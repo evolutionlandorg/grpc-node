@@ -23,7 +23,7 @@
     "tronweb": "^2.2.9",
     "typedarray-to-buffer": "^3.1.5",
     "web3": "^1.0.0-beta.34",
-    "@polkadot/api": "0.97.1",
-    "@polkadot/util": "1.7.0-beta.5"
+    "@polkadot/api": "1.8.0-beta.2",
+    "@polkadot/util": "^2.6.2"
   }
 }
