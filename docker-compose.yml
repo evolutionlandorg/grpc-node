@@ -2,6 +2,7 @@ version: "2"
 
 services:
   grpc-node:
+    restart: always
     container_name: 'grpc-node'
     build: .
     environment:
