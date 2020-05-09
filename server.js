@@ -58,7 +58,7 @@ const getGameSettlePrivateKey = async () => {
 
 async function main() {
     if (process.env.GRPC_ENV === "production") {
-        await getGameSettlePrivateKey();
+        // await getGameSettlePrivateKey();
     }
     let server = new grpc.Server();
     server.addService(web3_proto.EthWeb3.service, {
